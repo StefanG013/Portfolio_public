@@ -1,0 +1,3 @@
+﻿Date,Security,Ticker,Exchange,Price,Transaction_costs,Total,Number_of_securities,Security_type,Industry,Broker,Strategy,Country,Currency
+10/15/24,ASML,ASML.AS,Euronext Amsterdam,709,3,712,1,Stock,Tech,DEGIRO,Groei,Netherlands,Euro
+12/27/24,Vanguard S&P 500,VUSA.AS,Euronext Amsterdam,109.1,1,110.1,5,ETF,Tech,DEGIRO,Groei,US,Euro

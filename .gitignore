@@ -1,0 +1,4 @@
+trading_agent.db
+.env
+__pycache__/
+*.pyc

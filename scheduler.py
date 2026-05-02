@@ -37,7 +37,7 @@ TIMEZONE = "America/New_York"
 CRON_KWARGS = dict(
     day_of_week="mon-fri",
     hour="9-15",
-    minute="30,0",     # :30 and :00
+    minute="0,30",     # :00 and :30
     timezone=TIMEZONE,
 )
 

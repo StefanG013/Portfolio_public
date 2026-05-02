@@ -99,16 +99,24 @@ class TradingAgent:
         df = get_market_data_with_indicators(symbol)
         if df.empty:
             self._log_skipped(symbol, "No market data available")
-            return {"symbol": symbol, "action": "HOLD", "status": "SKIPPED",
-                    "reasoning": "No market data available"}
+            return {
+                "symbol": symbol,
+                "action": "HOLD",
+                "status": "SKIPPED",
+                "reasoning": "No market data available",
+            }
 
         # 2. Strategy signal
         signal: Signal = evaluate(df, symbol)
 
         if signal.action == "HOLD":
             self._log_skipped(symbol, signal.reasoning)
-            return {"symbol": symbol, "action": "HOLD", "status": "SKIPPED",
-                    "reasoning": signal.reasoning}
+            return {
+                "symbol": symbol,
+                "action": "HOLD",
+                "status": "SKIPPED",
+                "reasoning": signal.reasoning,
+            }
 
         # 3. Guardrails
         if daily_trades >= config.MAX_DAILY_TRADES:
@@ -117,15 +125,23 @@ class TradingAgent:
                 f"({config.MAX_DAILY_TRADES}) reached."
             )
             self._log_skipped(symbol, reason)
-            return {"symbol": symbol, "action": signal.action, "status": "SKIPPED",
-                    "reasoning": reason}
+            return {
+                "symbol": symbol,
+                "action": signal.action,
+                "status": "SKIPPED",
+                "reasoning": reason,
+            }
 
         # 4. Get current price
         price = get_latest_price(symbol)
         if price is None:
             self._log_skipped(symbol, "Could not fetch current price")
-            return {"symbol": symbol, "action": signal.action, "status": "SKIPPED",
-                    "reasoning": "Could not fetch current price"}
+            return {
+                "symbol": symbol,
+                "action": signal.action,
+                "status": "SKIPPED",
+                "reasoning": "Could not fetch current price",
+            }
 
         # 5. Execute via broker
         if signal.action == "BUY":

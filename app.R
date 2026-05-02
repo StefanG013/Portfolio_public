@@ -283,8 +283,8 @@ server <- function(input, output, session) {
     lr <- if (!is.null(status)) status$last_run else NULL
     if (is.null(lr)) return(HTML("Never"))
     # Format: "2024-01-15 14:30:00"
-    HTML(format(as.POSIXct(lr, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"),
-                "%Y-%m-%d %H:%M"))
+    fmt <- format(as.POSIXct(lr, format = "%Y-%m-%dT%H:%M:%OS", tz = "UTC"), "%Y-%m-%d %H:%M")
+    HTML(fmt)
   })
 
   # -------------------------------------------------------------------------
